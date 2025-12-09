@@ -1,0 +1,47 @@
+---
+import heroImage from "../../assets/hero.jpg";
+import CustomLink from "../custom-link.astro";
+---
+
+<section
+  class="relative w-full h-screen md:h-[700px] flex items-center justify-center overflow-hidden"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={heroImage.src}
+      alt="Beautiful pool"
+      class="w-full h-full object-cover"
+    />
+    <!-- Overlay for better text readability -->
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-4xl mx-auto px-5 text-center text-white">
+    <h1 
+      class="text-3xl md:text-6xl font-bold mb-6 leading-tight"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      Your Dream Pool Starts Here
+    </h1>
+    <p 
+      class="text-xl mb-4 text-gray-100 max-w-3xl mx-auto"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      Beautiful pools, expert renovations, and reliable maintenance for Miami
+      homes & businesses. Licensed Miami Pool Contractors — Residential &
+      Commercial
+    </p>
+
+    <div 
+      class="flex justify-center"
+      data-aos="fade-up"
+      data-aos-delay="400"
+    >
+      <CustomLink href="/contact" children="Get a Free Quote" />
+    </div>
+  </div>
+</section>

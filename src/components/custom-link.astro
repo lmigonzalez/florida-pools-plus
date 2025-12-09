@@ -1,0 +1,14 @@
+---
+interface Props {
+  href: string;
+  children: string;
+}
+
+const { href, children }: Props = Astro.props;
+---
+
+<a
+  href={href}
+  class="group bg-blue-800 hover:ring-blue-800 text-sm sm:text-md flex w-full sm:w-fit items-center justify-center gap-2 overflow-hidden px-6 py-3 text-white shadow hover:shadow-2xl transition-all duration-300 ease-out hover:ring-2 hover:ring-offset-2 font-medium rounded"
+  >{children}</a
+>

@@ -1,0 +1,503 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CustomLink from "../components/custom-link.astro";
+import heroImage from "../assets/hero/hero-3.jpg";
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section
+    class="relative w-full min-h-screen md:h-[600px] flex items-center justify-center overflow-hidden"
+  >
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src={heroImage.src}
+        alt="Contact Florida Pools Plus"
+        class="w-full h-full object-cover"
+      />
+      <!-- Gradient Overlay for better text readability -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-gray-900/75 via-gray-900/65 to-gray-900/75"
+      >
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-5xl mx-auto px-5 text-center text-white">
+      <div
+        class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm md:text-base font-medium text-white/90"
+        data-aos="fade-down"
+        data-aos-duration="800"
+      >
+        Reach Out to Us
+      </div>
+      <h1
+        class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight tracking-tight"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        Get in Touch
+      </h1>
+      <p
+        class="text-lg md:text-xl lg:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed mb-8"
+        data-aos="fade-up"
+        data-aos-delay="200"
+        data-aos-duration="1000"
+      >
+        Ready to start your pool project? Contact us today for a free
+        consultation and quote.
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        data-aos="fade-up"
+        data-aos-delay="400"
+        data-aos-duration="1000"
+      >
+        <CustomLink href="/contact" children="Get a Free Quote" />
+        <a
+          href="tel:(954) 314-7591"
+          class="group bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 text-white hover:text-white text-md flex justify-center items-center gap-2 px-6 py-3 rounded transition-all duration-300 ease-out font-medium w-full sm:w-fit"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            ></path>
+          </svg>
+          Call Us Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info Section -->
+  <section class="w-full py-16 md:py-24 bg-gray-50">
+    <div class="w-7xl max-w-full mx-auto px-5">
+      <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+        <!-- Contact Form -->
+        <div data-aos="fade-right" data-aos-duration="1000">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            Send Us a Message
+          </h2>
+          <p class="text-lg text-gray-700 mb-8">
+            Fill out the form below and we'll get back to you as soon as
+            possible. We typically respond within 24 hours.
+          </p>
+
+          <form
+            class="space-y-6 bg-white p-8 shadow-lg border border-gray-200"
+            action="#"
+            method="POST"
+          >
+            <div>
+              <label
+                for="name"
+                class="block text-sm font-bold text-gray-900 mb-2"
+              >
+                Full Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
+                placeholder="John Doe"
+              />
+            </div>
+
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-bold text-gray-900 mb-2"
+              >
+                Email Address <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
+                placeholder="john@example.com"
+              />
+            </div>
+
+            <div>
+              <label
+                for="phone"
+                class="block text-sm font-bold text-gray-900 mb-2"
+              >
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
+                placeholder="(305) 555-1234"
+              />
+            </div>
+
+            <div>
+              <label
+                for="service"
+                class="block text-sm font-bold text-gray-900 mb-2"
+              >
+                Service Needed
+              </label>
+              <select
+                id="service"
+                name="service"
+                class="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all bg-white"
+              >
+                <option value="">Select a service...</option>
+                <option value="new-construction">New Pool Construction</option>
+                <option value="renovation">Pool & Deck Renovation</option>
+                <option value="maintenance">Weekly Pool Maintenance</option>
+                <option value="equipment">Equipment Sales</option>
+                <option value="commercial">Commercial Services</option>
+                <option value="repair">Emergency Repair</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                for="message"
+                class="block text-sm font-bold text-gray-900 mb-2"
+              >
+                Message <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                class="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none"
+                placeholder="Tell us about your project or questions..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-blue-700 hover:bg-blue-800 text-white text-md flex items-center justify-center gap-2 px-6 py-4 transition-all duration-300 ease-out font-bold text-lg shadow-md hover:shadow-xl"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            Contact Information
+          </h2>
+          <p class="text-lg text-gray-700 mb-8">
+            Prefer to reach us directly? Use any of the methods below to get in
+            touch.
+          </p>
+
+          <div class="space-y-8">
+            <!-- Phone -->
+            <div
+              class="flex items-start gap-4 bg-white p-6 shadow-md border border-gray-200"
+            >
+              <div
+                class="shrink-0 w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Phone</h3>
+                <a
+                  href="tel:(954) 314-7591"
+                  class="text-lg text-blue-700 hover:text-blue-800 transition-colors font-medium"
+                >
+                  (954) 314-7591
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                  Available 24/7 for emergencies
+                </p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div
+              class="flex items-start gap-4 bg-white p-6 shadow-md border border-gray-200"
+            >
+              <div
+                class="shrink-0 w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Email</h3>
+                <a
+                  href="mailto:info@floridapoolsplus.com"
+                  class="text-lg text-blue-700 hover:text-blue-800 transition-colors font-medium"
+                >
+                  info@floridapoolsplus.com
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                  We respond within 24 hours
+                </p>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div
+              class="flex items-start gap-4 bg-white p-6 shadow-md border border-gray-200"
+            >
+              <div
+                class="shrink-0 w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">
+                  Service Area
+                </h3>
+                <p class="text-lg text-gray-700 font-medium">
+                  Miami-Dade County, Florida
+                </p>
+                <p class="text-sm text-gray-600 mt-1">
+                  Serving all of Miami and surrounding areas
+                </p>
+              </div>
+            </div>
+
+            <!-- Business Hours -->
+            <div
+              class="flex items-start gap-4 bg-white p-6 shadow-md border border-gray-200"
+            >
+              <div
+                class="shrink-0 w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">
+                  Business Hours
+                </h3>
+                <div class="text-lg text-gray-700 space-y-1 font-medium">
+                  <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                  <p>Saturday: 9:00 AM - 4:00 PM</p>
+                  <p>Sunday: Closed</p>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">
+                  Emergency service available 24/7
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="w-full py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-5">
+      <div
+        class="text-center mb-12"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Our Service Area
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          We proudly serve Miami-Dade County and surrounding areas. Contact us
+          to see if we service your location.
+        </p>
+      </div>
+
+      <div
+        class="bg-white shadow-lg overflow-hidden border border-gray-200"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="200"
+      >
+        <div class="aspect-video w-full">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.947356991358!2d-80.19725562387774!3d26.165843877100155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d906b1c39d9ae5%3A0x74a9e9dbb5bb3072!2s3129%20NW%2035th%20Ave%2C%20Lauderdale%20Lakes%2C%20FL%2033309!5e0!3m2!1sen!2sus!4v1765287548244!5m2!1sen!2sus"
+            class="w-full h-full"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Contact Us Section -->
+  <section class="w-full py-16 md:py-24 bg-blue-700 text-white">
+    <div class="max-w-6xl mx-auto px-5">
+      <div
+        class="text-center mb-12"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Why Contact Us Today?
+        </h2>
+        <p class="text-lg text-blue-100 max-w-2xl mx-auto">
+          Get started on your pool project with a free consultation and
+          no-obligation quote.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div
+          class="text-center bg-white p-6 shadow-lg border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+        >
+          <div
+            class="w-16 h-16 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <svg
+              class="w-8 h-8 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Free Estimates</h3>
+          <p class="text-gray-700">
+            No obligation, no pressure. Get a detailed quote for your project at
+            no cost.
+          </p>
+        </div>
+
+        <div
+          class="text-center bg-white p-6 shadow-lg border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
+          <div
+            class="w-16 h-16 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <svg
+              class="w-8 h-8 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Fast Response</h3>
+          <p class="text-gray-700">
+            We respond to all inquiries within 24 hours, often much sooner.
+          </p>
+        </div>
+
+        <div
+          class="text-center bg-white p-6 shadow-lg border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="300"
+        >
+          <div
+            class="w-16 h-16 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <svg
+              class="w-8 h-8 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Expert Advice</h3>
+          <p class="text-gray-700">
+            Get professional guidance from experienced pool contractors with 15+
+            years in the business.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

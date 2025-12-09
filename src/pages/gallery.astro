@@ -1,0 +1,259 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import CustomLink from "../components/custom-link.astro";
+import heroImage from "../assets/hero/hero-4.jpg";
+import newPoolImg from "../assets/services/new-pool.png";
+import renovationImg from "../assets/services/renovation.png";
+import maintenanceImg from "../assets/services/maintenance.png";
+import salesImg from "../assets/services/sales.png";
+import contractorsImg from "../assets/services/contractors.png";
+import aboutImage from "../assets/hero/hero-4.jpg";
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section
+    class="relative w-full min-h-screen md:h-[600px] flex items-center justify-center overflow-hidden"
+  >
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <Image
+        src={heroImage}
+        alt="Our Gallery"
+        class="w-full h-full object-cover"
+      />
+      <!-- Gradient Overlay for better text readability -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-gray-900/75 via-gray-900/65 to-gray-900/75"
+      >
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-5xl mx-auto px-5 text-center text-white">
+      <div
+        class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm md:text-base font-medium text-white/90"
+        data-aos="fade-down"
+        data-aos-duration="800"
+      >
+        Our Showcase
+      </div>
+      <h1
+        class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight tracking-tight"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        Our Gallery
+      </h1>
+      <p
+        class="text-lg md:text-xl lg:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed mb-8"
+        data-aos="fade-up"
+        data-aos-delay="200"
+        data-aos-duration="1000"
+      >
+        Explore our portfolio of completed pool projects, renovations, and
+        transformations throughout Miami.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="w-full py-16 md:py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-5">
+      <div
+        class="text-center mb-12"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Our Completed Projects
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          A selection of our finest work, showcasing the quality and
+          craftsmanship we bring to every pool project.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Gallery Item 1: New Pool Construction -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+        >
+          <Image
+            src={newPoolImg}
+            alt="New Pool Construction Project"
+            class="w-full h-60 object-cover"
+            width={800}
+            height={600}
+            quality={100}
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Custom Pool Build
+            </h3>
+            <p class="text-gray-700">
+              A beautifully designed new pool with integrated spa and waterfall
+              features.
+            </p>
+          </div>
+        </div>
+
+        <!-- Gallery Item 2: Pool Renovation -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        >
+          <Image
+            src={renovationImg}
+            alt="Pool Renovation Project"
+            class="w-full h-60 object-cover"
+            width={800}
+            height={600}
+            quality={100}
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Modern Renovation
+            </h3>
+            <p class="text-gray-700">
+              Complete overhaul of an old pool, featuring new tiling, decking,
+              and LED lighting.
+            </p>
+          </div>
+        </div>
+
+        <!-- Gallery Item 3: Pool Maintenance -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="300"
+        >
+          <Image
+            src={maintenanceImg}
+            alt="Pool Maintenance Showcase"
+            class="w-full h-60 object-cover"
+            width={800}
+            height={600}
+            quality={100}
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Crystal Clear Water
+            </h3>
+            <p class="text-gray-700">
+              Demonstrating our meticulous weekly maintenance services keeping
+              pools pristine.
+            </p>
+          </div>
+        </div>
+
+        <!-- Gallery Item 4: Equipment Sales -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="400"
+        >
+          <Image
+            src={salesImg}
+            alt="Pool Equipment Installation"
+            class="w-full h-60 object-cover"
+            width={800}
+            height={600}
+            quality={100}
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Advanced Equipment Setup
+            </h3>
+            <p class="text-gray-700">
+              Installation of energy-efficient pumps, filters, and smart
+              automation systems.
+            </p>
+          </div>
+        </div>
+
+        <!-- Gallery Item 5: Commercial Project -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="500"
+        >
+          <Image
+            src={contractorsImg}
+            alt="Commercial Pool Project"
+            class="w-full h-60 object-cover"
+            width={800}
+            height={600}
+            quality={100}
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Hotel Pool Design
+            </h3>
+            <p class="text-gray-700">
+              A large-scale commercial pool project for a luxury hotel in
+              Miami-Dade.
+            </p>
+          </div>
+        </div>
+
+        <!-- Gallery Item 6: About Page Image (example) -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="600"
+        >
+          <Image
+            src={aboutImage}
+            alt="Our Team at Work"
+            class="w-full h-60 object-cover"
+            width={800}
+            height={600}
+            quality={100}
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Dedicated Craftsmanship
+            </h3>
+            <p class="text-gray-700">
+              Our skilled team diligently working on a pool renovation project.
+            </p>
+          </div>
+        </div>
+
+        <!-- Gallery Item 7: Hero Image (example) -->
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="700"
+        >
+          <Image
+            src={heroImage}
+            alt="Stunning Residential Pool"
+            class="w-full h-60 object-cover"
+            width={800}
+            height={600}
+            quality={100}
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Backyard Oasis</h3>
+            <p class="text-gray-700">
+              A luxurious residential pool designed for ultimate relaxation and
+              entertainment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

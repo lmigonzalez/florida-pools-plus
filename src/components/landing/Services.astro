@@ -1,0 +1,162 @@
+---
+import { Image } from "astro:assets";
+import newPoolImg from "../../assets/services/new-pool.png";
+import renovationImg from "../../assets/services/renovation.png";
+import maintenanceImg from "../../assets/services/maintenance.png";
+import salesImg from "../../assets/services/sales.png";
+import contractorsImg from "../../assets/services/contractors.png";
+import CustomLink from "../custom-link.astro";
+---
+
+<section class="w-full py-16 md:py-24 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-5">
+    <!-- Section Header -->
+    <div 
+      class="text-center mb-12"
+      data-aos="fade-up"
+    >
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Professional Pool Services for Every Need
+      </h2>
+    </div>
+
+    <!-- Services List -->
+    <div class="flex flex-col gap-4 md:gap-6 mb-10">
+      <!-- Service Card 1 -->
+      <div
+        class="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 overflow-hidden flex flex-col md:flex-row"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <Image
+          src={newPoolImg}
+          alt="New Pool Construction"
+          class="w-full md:w-64 h-48 md:h-48 object-cover shrink-0"
+          width={512}
+          height={384}
+          quality={100}
+        />
+        <div class="p-4 md:p-6">
+          <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
+            New Pool Construction
+          </h3>
+          <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+            We design and build custom pools that match your style, space, and
+            budget. From modern designs to traditional layouts, we handle the
+            entire construction process from start to finish.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service Card 2 -->
+      <div
+        class="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 overflow-hidden flex flex-col md:flex-row"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        <Image
+          src={renovationImg}
+          alt="Complete Pool & Deck Renovations"
+          class="w-full md:w-64 h-48 md:h-48 object-cover shrink-0"
+          width={512}
+          height={384}
+          quality={100}
+        />
+        <div class="p-4 md:p-6">
+          <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
+            Complete Pool & Deck Renovations
+          </h3>
+          <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+            Transform old or damaged pools into stunning new outdoor spaces.
+            Resurfacing, tile replacement, decking, lighting, equipment upgrades
+            — we do it all.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service Card 3 -->
+      <div
+        class="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 overflow-hidden flex flex-col md:flex-row"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
+        <Image
+          src={maintenanceImg}
+          alt="Weekly Pool Maintenance"
+          class="w-full md:w-64 h-48 md:h-48 object-cover shrink-0"
+          width={512}
+          height={384}
+          quality={100}
+        />
+        <div class="p-4 md:p-6">
+          <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
+            Weekly Pool Maintenance
+          </h3>
+          <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+            Keep your water clear, clean, and safe. Our maintenance team handles
+            chemicals, cleaning, equipment checks, and weekly service visits.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service Card 4 -->
+      <div
+        class="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 overflow-hidden flex flex-col md:flex-row"
+        data-aos="fade-up"
+        data-aos-delay="400"
+      >
+        <Image
+          src={salesImg}
+          alt="Pool Equipment Sales"
+          class="w-full md:w-64 h-48 md:h-48 object-cover shrink-0"
+          width={512}
+          height={384}
+          quality={100}
+        />
+        <div class="p-4 md:p-6">
+          <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
+            Pool Equipment Sales
+          </h3>
+          <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+            We offer pumps, filters, heaters, lights, automation systems, and
+            more — everything you need to keep your pool running efficiently.
+          </p>
+        </div>
+      </div>
+
+      <!-- Service Card 5 -->
+      <div
+        class="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 overflow-hidden flex flex-col md:flex-row"
+        data-aos="fade-up"
+        data-aos-delay="500"
+      >
+        <Image
+          src={contractorsImg}
+          alt="Residential & Commercial Contractors"
+          class="w-full md:w-64 h-48 md:h-48 object-cover shrink-0"
+          width={512}
+          height={384}
+          quality={100}
+        />
+        <div class="p-4 md:p-6">
+          <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
+            Residential & Commercial Contractors
+          </h3>
+          <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+            We work with homes, hotels, apartments, HOAs, and commercial
+            buildings throughout Miami. No project is too big or too small.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div 
+      class="flex justify-center"
+      data-aos="fade-up"
+      data-aos-delay="600"
+    >
+      <CustomLink href="/services" children="View All Services" />
+    </div>
+  </div>
+</section>
