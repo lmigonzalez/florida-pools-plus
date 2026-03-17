@@ -11,75 +11,41 @@ import heroImage from "../assets/hero/hero-1.jpg";
 ---
 
 <Layout>
-  <!-- Hero Section -->
+  <!-- Hero Section (compact) -->
   <section
-    class="relative w-full min-h-screen md:h-[600px] flex items-center justify-center overflow-hidden"
+    class="relative w-full min-h-[350px] md:min-h-[400px] py-12 md:py-16 flex items-center justify-center overflow-hidden"
   >
-    <!-- Background Image -->
     <div class="absolute inset-0 z-0">
       <img
         src={heroImage.src}
         alt="Professional pool services"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover bg-fixed"
       />
-      <!-- Gradient Overlay for better text readability -->
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-gray-900/75 via-gray-900/65 to-gray-900/75"
-      >
-      </div>
+      <div class="absolute inset-0 bg-gray-900/60" />
     </div>
-
-    <!-- Content -->
-    <div class="relative z-10 max-w-5xl mx-auto px-5 text-center text-white">
-      <div
-        class="inline-block mb-4 px-4 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm md:text-base font-medium text-white/90"
-        data-aos="fade-down"
-        data-aos-duration="800"
-      >
-        Professional Pool Services
-      </div>
+    <div class="relative z-10 max-w-3xl mx-auto px-5 text-center text-white">
       <h1
-        class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight tracking-tight"
+        class="text-3xl md:text-4xl font-bold mb-3 leading-tight"
         data-aos="fade-up"
-        data-aos-duration="1000"
+        data-aos-duration="600"
       >
         Our Pool Services
       </h1>
       <p
-        class="text-lg md:text-xl lg:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed mb-8"
+        class="text-base md:text-lg text-gray-200 mb-6"
         data-aos="fade-up"
-        data-aos-delay="200"
-        data-aos-duration="1000"
+        data-aos-delay="150"
+        data-aos-duration="600"
       >
-        From design to maintenance, we provide comprehensive pool solutions for
-        residential and commercial properties throughout Miami.
+        Design, construction, maintenance, and more — all across Miami.
       </p>
       <div
-        class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        class="flex justify-center"
         data-aos="fade-up"
-        data-aos-delay="400"
-        data-aos-duration="1000"
+        data-aos-delay="250"
+        data-aos-duration="600"
       >
         <CustomLink href="/contact" children="Get a Free Quote" />
-        <a
-          href="tel:(954) 314-7591"
-          class="group bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 text-white hover:text-white text-md flex justify-center items-center gap-2 px-6 py-3 rounded transition-all duration-300 ease-out font-medium w-full sm:w-fit"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-            ></path>
-          </svg>
-          Call Us Now
-        </a>
       </div>
     </div>
   </section>
