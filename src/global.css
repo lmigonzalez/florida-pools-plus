@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 body {
   font-family: var(--font-body);
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
