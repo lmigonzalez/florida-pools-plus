@@ -1,18 +1,50 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import CustomLink from "../components/custom-link.astro";
 import heroImage from "../assets/hero/hero-4.jpg";
-import newPoolImg from "../assets/services/new-pool.png";
-import renovationImg from "../assets/services/renovation.png";
-import maintenanceImg from "../assets/services/maintenance.png";
-import salesImg from "../assets/services/sales.png";
-import contractorsImg from "../assets/services/contractors.png";
-import aboutImage from "../assets/hero/hero-4.jpg";
+
+const imageModules = import.meta.glob("../assets/gallery/im-*.jpg", {
+  eager: true,
+});
+const videoModules = import.meta.glob("../assets/gallery/vid-*.mp4", {
+  eager: true,
+});
+
+const images = Object.entries(imageModules)
+  .map(([path, mod]: [string, any]) => ({
+    type: "image" as const,
+    src: (mod.default?.src ?? mod.default) as string | undefined,
+    alt: "Florida Pools Plus project",
+    num: parseInt(path.match(/im-(\d+)/)?.[1] ?? "0"),
+  }))
+  .filter((item) => Boolean(item.src))
+  .sort((a, b) => a.num - b.num) as { type: "image"; src: string; alt: string; num: number }[];
+
+const videos = Object.entries(videoModules)
+  .map(([path, mod]: [string, any]) => ({
+    type: "video" as const,
+    src: (mod.default?.src ?? mod.default) as string | undefined,
+    num: parseInt(path.match(/vid-(\d+)/)?.[1] ?? "0"),
+  }))
+  .filter((item) => Boolean(item.src))
+  .sort((a, b) => a.num - b.num) as { type: "video"; src: string; num: number }[];
+
+// Interleave one video roughly every 9 images
+type GalleryItem =
+  | { type: "image"; src: string; alt: string; num: number }
+  | { type: "video"; src: string; num: number };
+
+const allMedia: GalleryItem[] = [...images];
+videos.forEach((video, i) => {
+  const pos = Math.min((i + 1) * 9, allMedia.length);
+  allMedia.splice(pos, 0, video);
+});
+
+const INITIAL_COUNT = 12;
+const BATCH_SIZE = 12;
 ---
 
 <Layout>
-  <!-- Hero Section (compact) -->
+  <!-- Hero Section -->
   <section
     class="relative w-full min-h-[350px] md:min-h-[400px] py-12 md:py-16 flex items-center justify-center overflow-hidden"
   >
@@ -22,7 +54,7 @@ import aboutImage from "../assets/hero/hero-4.jpg";
         alt="Our Gallery"
         class="w-full h-full object-cover"
       />
-      <div class="absolute inset-0 bg-gray-900/60" />
+      <div class="absolute inset-0 bg-gray-900/60"></div>
     </div>
     <div class="relative z-10 max-w-3xl mx-auto px-5 text-center text-white">
       <h1
@@ -45,201 +77,266 @@ import aboutImage from "../assets/hero/hero-4.jpg";
   </section>
 
   <!-- Gallery Section -->
-  <section class="w-full py-16 md:py-24 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-5">
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div
-        class="text-center mb-12"
-        data-aos="fade-up"
-        data-aos-duration="1000"
+        id="gallery-grid"
+        class="columns-2 md:columns-3 lg:columns-4 gap-3"
       >
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Our Completed Projects
-        </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          A selection of our finest work, showcasing the quality and
-          craftsmanship we bring to every pool project.
-        </p>
+        {
+          allMedia.map((item, index) => (
+            <div
+              class={`gallery-item break-inside-avoid mb-3 overflow-hidden rounded-lg group relative transition-opacity duration-500 ${index >= INITIAL_COUNT ? "opacity-0 hidden" : "opacity-100"}`}
+              data-index={index}
+              data-type={item.type}
+            >
+              {item.type === "image" ? (
+                <button
+                  class="w-full block"
+                  data-lightbox-src={item.src}
+                  data-lightbox-index={index}
+                  aria-label="View full image"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    loading={index < INITIAL_COUNT ? "eager" : "lazy"}
+                    decoding="async"
+                    class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-all duration-300 flex items-center justify-center pointer-events-none">
+                    <svg
+                      class="w-9 h-9 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              ) : (
+                <video
+                  class="w-full h-auto rounded-lg"
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  data-src={item.src}
+                >
+                  <source src={item.src} type="video/mp4" />
+                </video>
+              )}
+            </div>
+          ))
+        }
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Gallery Item 1: New Pool Construction -->
-        <div
-          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-          data-aos-delay="100"
-        >
-          <Image
-            src={newPoolImg}
-            alt="New Pool Construction Project"
-            class="w-full h-60 object-cover"
-            width={800}
-            height={600}
-            quality={100}
-          />
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
-              Custom Pool Build
-            </h3>
-            <p class="text-gray-700">
-              A beautifully designed new pool with integrated spa and waterfall
-              features.
-            </p>
-          </div>
-        </div>
 
-        <!-- Gallery Item 2: Pool Renovation -->
-        <div
-          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-          data-aos-delay="200"
-        >
-          <Image
-            src={renovationImg}
-            alt="Pool Renovation Project"
-            class="w-full h-60 object-cover"
-            width={800}
-            height={600}
-            quality={100}
-          />
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
-              Modern Renovation
-            </h3>
-            <p class="text-gray-700">
-              Complete overhaul of an old pool, featuring new tiling, decking,
-              and LED lighting.
-            </p>
+      <!-- Sentinel for IntersectionObserver -->
+      <div id="gallery-sentinel" class="h-16 flex items-center justify-center mt-6">
+        <div id="gallery-loader" class="hidden">
+          <div
+            class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+          >
           </div>
         </div>
-
-        <!-- Gallery Item 3: Pool Maintenance -->
-        <div
-          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-          data-aos-delay="300"
-        >
-          <Image
-            src={maintenanceImg}
-            alt="Pool Maintenance Showcase"
-            class="w-full h-60 object-cover"
-            width={800}
-            height={600}
-            quality={100}
-          />
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
-              Crystal Clear Water
-            </h3>
-            <p class="text-gray-700">
-              Demonstrating our meticulous weekly maintenance services keeping
-              pools pristine.
-            </p>
-          </div>
-        </div>
-
-        <!-- Gallery Item 4: Equipment Sales -->
-        <div
-          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-          data-aos-delay="400"
-        >
-          <Image
-            src={salesImg}
-            alt="Pool Equipment Installation"
-            class="w-full h-60 object-cover"
-            width={800}
-            height={600}
-            quality={100}
-          />
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
-              Advanced Equipment Setup
-            </h3>
-            <p class="text-gray-700">
-              Installation of energy-efficient pumps, filters, and smart
-              automation systems.
-            </p>
-          </div>
-        </div>
-
-        <!-- Gallery Item 5: Commercial Project -->
-        <div
-          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-          data-aos-delay="500"
-        >
-          <Image
-            src={contractorsImg}
-            alt="Commercial Pool Project"
-            class="w-full h-60 object-cover"
-            width={800}
-            height={600}
-            quality={100}
-          />
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
-              Hotel Pool Design
-            </h3>
-            <p class="text-gray-700">
-              A large-scale commercial pool project for a luxury hotel in
-              Miami-Dade.
-            </p>
-          </div>
-        </div>
-
-        <!-- Gallery Item 6: About Page Image (example) -->
-        <div
-          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-          data-aos-delay="600"
-        >
-          <Image
-            src={aboutImage}
-            alt="Our Team at Work"
-            class="w-full h-60 object-cover"
-            width={800}
-            height={600}
-            quality={100}
-          />
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
-              Dedicated Craftsmanship
-            </h3>
-            <p class="text-gray-700">
-              Our skilled team diligently working on a pool renovation project.
-            </p>
-          </div>
-        </div>
-
-        <!-- Gallery Item 7: Hero Image (example) -->
-        <div
-          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
-          data-aos="fade-up"
-          data-aos-duration="1000"
-          data-aos-delay="700"
-        >
-          <Image
-            src={heroImage}
-            alt="Stunning Residential Pool"
-            class="w-full h-60 object-cover"
-            width={800}
-            height={600}
-            quality={100}
-          />
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Backyard Oasis</h3>
-            <p class="text-gray-700">
-              A luxurious residential pool designed for ultimate relaxation and
-              entertainment.
-            </p>
-          </div>
-        </div>
+        <p id="gallery-end" class="hidden text-gray-400 text-sm tracking-wide">
+          All photos loaded
+        </p>
       </div>
     </div>
   </section>
+
+  <!-- Lightbox -->
+  <div
+    id="lightbox"
+    class="fixed inset-0 z-50 bg-black/92 hidden flex-col items-center justify-center"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Image lightbox"
+  >
+    <button
+      id="lightbox-close"
+      class="absolute top-4 right-5 text-white/80 hover:text-white transition-colors z-10"
+      aria-label="Close"
+    >
+      <svg
+        class="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <button
+      id="lightbox-prev"
+      class="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
+      aria-label="Previous image"
+    >
+      <svg
+        class="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    <button
+      id="lightbox-next"
+      class="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-10 p-2"
+      aria-label="Next image"
+    >
+      <svg
+        class="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+    <img
+      id="lightbox-img"
+      src=""
+      alt="Gallery image"
+      class="max-w-[92vw] max-h-[88vh] object-contain rounded-lg shadow-2xl select-none"
+    />
+    <p id="lightbox-counter" class="text-white/50 text-sm mt-3"></p>
+  </div>
 </Layout>
+
+<script define:vars={{ allMedia, INITIAL_COUNT, BATCH_SIZE }}>
+  // ── Lazy-load more gallery items on scroll ────────────────────────────────
+  const items = Array.from(document.querySelectorAll(".gallery-item"));
+  const sentinel = document.getElementById("gallery-sentinel");
+  const loader = document.getElementById("gallery-loader");
+  const endMsg = document.getElementById("gallery-end");
+
+  let currentCount = INITIAL_COUNT;
+  let loading = false;
+
+  function showNextBatch() {
+    if (loading || currentCount >= items.length) return;
+    loading = true;
+    loader?.classList.remove("hidden");
+
+    // Small delay to show the spinner briefly
+    setTimeout(() => {
+      const next = items.slice(currentCount, currentCount + BATCH_SIZE);
+      next.forEach((el) => {
+        el.classList.remove("hidden");
+        // Trigger fade-in
+        requestAnimationFrame(() => {
+          el.classList.remove("opacity-0");
+          el.classList.add("opacity-100");
+        });
+      });
+      currentCount += next.length;
+      loading = false;
+      loader?.classList.add("hidden");
+
+      if (currentCount >= items.length) {
+        endMsg?.classList.remove("hidden");
+        observer.disconnect();
+      }
+    }, 300);
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) showNextBatch();
+    },
+    { rootMargin: "200px" }
+  );
+
+  if (sentinel) observer.observe(sentinel);
+
+  // ── Video hover play / pause ──────────────────────────────────────────────
+  document.querySelectorAll(".gallery-item video").forEach((video) => {
+    video.addEventListener("mouseenter", () => video.play());
+    video.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+
+  // ── Lightbox ──────────────────────────────────────────────────────────────
+  const lightbox = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lightbox-img");
+  const lbCounter = document.getElementById("lightbox-counter");
+  const lbClose = document.getElementById("lightbox-close");
+  const lbPrev = document.getElementById("lightbox-prev");
+  const lbNext = document.getElementById("lightbox-next");
+
+  // Collect only image items for the lightbox
+  const imageItems = allMedia
+    .map((item, i) => ({ ...item, globalIndex: i }))
+    .filter((item) => item.type === "image");
+
+  let currentLbIndex = 0;
+
+  function openLightbox(src) {
+    const idx = imageItems.findIndex((img) => img.src === src);
+    if (idx === -1) return;
+    currentLbIndex = idx;
+    if (lbImg) lbImg.src = imageItems[idx].src;
+    if (lbCounter) lbCounter.textContent = `${idx + 1} / ${imageItems.length}`;
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    document.body.style.overflow = "";
+  }
+
+  function navigate(dir) {
+    currentLbIndex =
+      (currentLbIndex + dir + imageItems.length) % imageItems.length;
+    if (lbImg) lbImg.src = imageItems[currentLbIndex].src;
+    if (lbCounter) lbCounter.textContent = `${currentLbIndex + 1} / ${imageItems.length}`;
+  }
+
+  // Open lightbox on image button click
+  document.querySelectorAll("[data-lightbox-src]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      openLightbox(btn.getAttribute("data-lightbox-src"));
+    });
+  });
+
+  lbClose?.addEventListener("click", closeLightbox);
+  lbPrev?.addEventListener("click", () => navigate(-1));
+  lbNext?.addEventListener("click", () => navigate(1));
+
+  lightbox?.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox?.classList.contains("flex")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") navigate(-1);
+    if (e.key === "ArrowRight") navigate(1);
+  });
+</script>
