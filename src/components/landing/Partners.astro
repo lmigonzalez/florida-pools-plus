@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import partner1 from "../../assets/partners/cr=w_192,h_100.webp";
+import partner2 from "../../assets/partners/rs=h_100,cg_true,m.webp";
+import partner3 from "../../assets/partners/rs=h_100,cg_true,m (1).webp";
+import partner4 from "../../assets/partners/rs=h_100,cg_true,m (2).webp";
+
+const partners = [
+  { logo: partner1, alt: "Partner logo 1" },
+  { logo: partner2, alt: "Partner logo 2" },
+  { logo: partner3, alt: "Partner logo 3" },
+  { logo: partner4, alt: "Partner logo 4" },
+];
+---
+
+<section class="w-full py-16 md:py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="text-center mb-10" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+        Our Financing Partners
+      </h2>
+      <p class="text-gray-600 text-lg">
+        Trusted partners helping make your pool project affordable.
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 items-stretch"
+      data-aos="fade-up"
+      data-aos-delay="120"
+    >
+      {
+        partners.map((partner) => (
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 md:p-5 shadow-sm flex items-center justify-center min-h-[110px]">
+            <Image
+              src={partner.logo}
+              alt={partner.alt}
+              class="w-full h-12 md:h-14 object-contain"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

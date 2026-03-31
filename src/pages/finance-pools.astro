@@ -1,0 +1,120 @@
+---
+import Layout from "../layouts/Layout.astro";
+import heroImage from "../assets/hero/hero-2.jpg";
+import vikingLogo from "../assets/Viking-Logo-Horizontal.png";
+import { Image } from "astro:assets";
+---
+
+<Layout
+  title="Pool Financing | Florida Pools Plus"
+  description="Apply for pool financing through Florida Pools Plus. Fast online application for new pool construction and renovation projects in South Florida."
+>
+  <section
+    class="relative w-full min-h-[320px] md:min-h-[380px] py-12 md:py-16 flex items-center justify-center overflow-hidden"
+  >
+    <div class="absolute inset-0 z-0">
+      <img
+        src={heroImage.src}
+        alt="Pool financing options in South Florida"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gray-900/60" />
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto px-5 text-center text-white">
+      <div class="flex justify-center mb-5" data-aos="fade-up" data-aos-duration="500">
+        <div class="bg-white/95 px-4 py-3 rounded-md shadow-md">
+          <Image
+            src={vikingLogo}
+            alt="Viking Capital"
+            class="h-10 md:h-12 w-auto object-contain"
+          />
+        </div>
+      </div>
+      <h1
+        class="text-3xl md:text-4xl font-bold mb-4 leading-tight"
+        data-aos="fade-up"
+        data-aos-duration="600"
+      >
+        Finance Your Dream Pool
+      </h1>
+      <p
+        class="text-base md:text-lg text-gray-200 mb-6"
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-duration="600"
+      >
+        Fast, secure online financing for new pool construction and renovations.
+      </p>
+      <div
+        class="flex justify-center"
+        data-aos="fade-up"
+        data-aos-delay="250"
+        data-aos-duration="600"
+      >
+        <a
+          href="https://poolloan.net/floridapoolsplus"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group bg-blue-800 hover:ring-blue-800 text-sm sm:text-md flex w-full sm:w-fit items-center justify-center gap-2 overflow-hidden px-6 py-3 text-white shadow hover:shadow-2xl transition-all duration-300 ease-out hover:ring-2 hover:ring-offset-2 font-medium rounded"
+        >
+          Apply for Financing
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full py-16 md:py-24 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-5">
+      <div
+        class="bg-white border border-gray-200 shadow-lg p-8 md:p-10 text-center"
+        data-aos="fade-up"
+        data-aos-duration="900"
+      >
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-5">
+          Pool Financing Made Simple
+        </h2>
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          Submit your application in minutes through our financing portal. Once
+          approved, we can schedule your pool project and move forward quickly.
+        </p>
+        <ul class="text-left text-gray-700 max-w-xl mx-auto space-y-2 mb-6">
+          <li>- Fast online application process</li>
+          <li>- Options for new builds and renovations</li>
+          <li>- Flexible payment plans available</li>
+        </ul>
+        <p class="text-sm text-gray-500">
+          Financing terms vary based on approval and lender requirements.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full py-16 md:py-20 bg-blue-700 text-white">
+    <div
+      class="max-w-4xl mx-auto px-5 text-center"
+      data-aos="fade-up"
+      data-aos-duration="900"
+    >
+      <h2 class="text-3xl md:text-4xl font-bold mb-5">Ready to Apply?</h2>
+      <p class="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+        Start your application through our official financing portal.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-4">
+        <a
+          href="https://poolloan.net/floridapoolsplus"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group bg-white hover:bg-gray-100 text-sm sm:text-md flex w-full sm:w-fit items-center justify-center gap-2 overflow-hidden px-6 py-3 text-blue-700 shadow hover:shadow-2xl transition-all duration-300 ease-out font-semibold rounded"
+        >
+          Apply for Financing
+        </a>
+        <a
+          href="tel:(954) 314-7591"
+          class="group bg-transparent border-2 border-white hover:bg-white text-sm sm:text-md flex w-full sm:w-fit items-center justify-center gap-2 overflow-hidden px-6 py-3 text-white hover:text-blue-700 shadow hover:shadow-2xl transition-all duration-300 ease-out font-medium rounded"
+        >
+          Call (954) 314-7591
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
